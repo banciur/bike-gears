@@ -1,0 +1,9 @@
+{
+  "name": "bike-gears",
+  "version": "0.0.1",
+  "repository": "git@github.com:banciur/bike-gears.git",
+  "author": "Tomek Banach <tomek@banciur.org>",
+  "devDependencies": {
+    "webpack": "^4.20.2"
+  }
+}
