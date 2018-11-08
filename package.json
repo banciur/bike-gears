@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "repository": "git@github.com:banciur/bike-gears.git",
   "author": "Tomek Banach <tomek@banciur.org>",
+  "license": "Apache-2.0",
   "devDependencies": {
     "webpack": "^4.20.2"
   }
