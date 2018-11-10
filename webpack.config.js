@@ -1,21 +1,31 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.ts",
+  devtool: "inline-source-map",
+  mode: "development",
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      title: "Bike gears"
-    })
+      title: "Bike gears",
+    }),
   ],
   devServer: {
-    contentBase: './dist'
+    contentBase: "./dist",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
   },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
   },
-  mode: "development"
 };
