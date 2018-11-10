@@ -1,6 +1,6 @@
 function component() {
-  let element = document.createElement('div');
-  element.innerHTML = ("Bike Gears project!");
+  let element = document.createElement("div");
+  element.innerHTML = "Bike Gears project!";
   return element;
 }
 
