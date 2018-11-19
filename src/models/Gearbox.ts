@@ -1,9 +1,6 @@
-interface IGearBox {
-  readonly length: number;
-  getRatio(gear: number): number;
-}
+import { IGearbox } from "./IGearbox";
 
-export class GearBox implements IGearBox, Iterable<number> {
+export class Gearbox implements IGearbox {
   private readonly gears: number[];
   readonly length: number;
 
