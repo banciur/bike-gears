@@ -16,7 +16,7 @@ module.exports = {
     contentBase: "./dist",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json", ".css"],
   },
   module: {
     rules: [
@@ -26,6 +26,23 @@ module.exports = {
         exclude: /node_modules/,
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: false,
+              localIdentName: "[name]__[local]___[hash:base64:5]",
+              camelCase: "dashesOnly",
+            },
+          },
+        ],
+      },
     ],
   },
   output: {
