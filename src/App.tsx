@@ -1,11 +1,25 @@
 import * as React from "react";
 import { Container, Row, Col } from "reactstrap";
 
+import { ChainGearBoxComponent } from "./components/ChainGearBox";
+import { ChainGearbox } from "./models/ChainGearbox";
+
+const frontGears = [44, 32, 22];
+const rearGears = [11, 13, 15, 17, 19, 20, 22];
+const forbiddenGears = ["1-7", "1-6", "2-1", "2-7", "3-1", "3-2"];
+
+const gearbox = new ChainGearbox(frontGears, rearGears, forbiddenGears);
+
 export const App = () => (
   <Container>
     <Row>
       <Col>
         <h1>Just another bike gears calculator</h1>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <ChainGearBoxComponent chainGearBox={gearbox} />
       </Col>
     </Row>
   </Container>
