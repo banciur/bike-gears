@@ -1,20 +1,10 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
   devtool: "source-map",
-  mode: "development",
-  plugins: [
-    new CleanWebpackPlugin(["dist"]),
-    new HtmlWebpackPlugin({
-      title: "Bike gears",
-    }),
-  ],
-  devServer: {
-    contentBase: "./dist",
-  },
+  plugins: [new CleanWebpackPlugin(["dist"])],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".css"],
   },
