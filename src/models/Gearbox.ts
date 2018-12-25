@@ -3,13 +3,16 @@ import { IGearbox } from "./IGearbox";
 export class Gearbox implements IGearbox {
   private readonly gears: number[];
   readonly length: number;
+  readonly ascending: boolean;
 
   constructor(gears: number[], ascending = true) {
-    this.gears = gears.sort();
+    gears.sort((a, b) => a - b);
     if (!ascending) {
-      this.gears.reverse();
+      gears.reverse();
     }
-    this.length = this.gears.length;
+    this.gears = [...new Set(gears)];
+    this.length = gears.length;
+    this.ascending = ascending;
   }
 
   getRatio(index: number) {
