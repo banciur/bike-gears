@@ -11,7 +11,7 @@ export class ChainGearbox implements IGearbox {
   constructor(frontGears: number[], rearGears: number[], forbiddenGears: string[]) {
     this.frontGears = new Gearbox(frontGears);
     this.rearGears = new Gearbox(rearGears, false);
-    this.forbiddenGears = forbiddenGears;
+    this.forbiddenGears = forbiddenGears.sort(this.forbiddenGearsSorter);
 
     for (let f = 0; f < this.frontGears.length; f++) {
       for (let r = 0; r < this.rearGears.length; r++) {
@@ -36,4 +36,17 @@ export class ChainGearbox implements IGearbox {
   getRatio(index: number): number {
     return this.gears[index][2];
   }
+
+  // TODO: could use some tests here?
+  private forbiddenGearsSorter = (gear1: string, gear2: string) => {
+    const gear1Indexes = gear1.split("-").map(index => Number.parseInt(index, 10));
+    const gear2Indexes = gear2.split("-").map(index => Number.parseInt(index, 10));
+
+    const res1 = gear1Indexes[0] - gear2Indexes[0];
+    if (res1 !== 0) {
+      return res1;
+    } else {
+      return gear1Indexes[1] - gear2Indexes[1];
+    }
+  };
 }
