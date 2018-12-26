@@ -85,6 +85,7 @@ export class GearboxComponent extends React.Component<GearboxComponentProps, Gea
           </div>
         ))}
         <div>
+          <p>Below you can add new gear to set</p>
           <Input onChange={this.handleNewGear} />
         </div>
       </>

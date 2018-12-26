@@ -14,7 +14,11 @@ export const App = () => (
   <Container>
     <Row>
       <Col>
-        <h1>Just another bike gears calculator</h1>
+        <h1>Another bike gears ratio calculator</h1>
+        <p>
+          So here you can enter your chainring sizes and calculate ratio for all gears. Soon it will be pretty and you
+          will be able to visualize cadence to speed.
+        </p>
       </Col>
     </Row>
     <Row>
