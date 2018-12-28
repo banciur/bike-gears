@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input } from "reactstrap";
+import { Button, Input, InputGroup, InputGroupAddon } from "reactstrap";
 import { debounce } from "lodash";
 
 import { Gearbox } from "../models/Gearbox";
@@ -7,6 +7,7 @@ import { Gearbox } from "../models/Gearbox";
 const DEBOUNCE_WAIT = 300;
 
 interface GearboxComponentProps {
+  header: string;
   gearbox: Gearbox;
   gearboxChangeHandler: (gearbox: Gearbox) => void;
 }
@@ -18,10 +19,12 @@ interface GearboxComponentState {
 export class GearboxComponent extends React.Component<GearboxComponentProps, GearboxComponentState> {
   private readonly notifyParent: (gearbox: Gearbox) => void;
   private readonly ascending: boolean;
+  private header: string;
 
   constructor(props: GearboxComponentProps) {
     super(props);
 
+    this.header = props.header;
     this.notifyParent = props.gearboxChangeHandler;
     this.ascending = props.gearbox.ascending;
     this.state = {
@@ -78,16 +81,20 @@ export class GearboxComponent extends React.Component<GearboxComponentProps, Gea
   render(): React.ReactNode {
     return (
       <>
+        <h4>{this.header}</h4>
         {Array.from(this.state.gearbox).map((gear, index) => (
-          <div key={index}>
-            {index + 1} - <Input value={gear} onChange={this.handleChangeGearGenerator(index)} />{" "}
-            <span onClick={this.handleRemoveGearGenerator(index)}> X </span>
-          </div>
+          <InputGroup size="sm" className="mb-2" key={index}>
+            <InputGroupAddon addonType="prepend">{`${index + 1}`}</InputGroupAddon>
+            <Input value={gear} onChange={this.handleChangeGearGenerator(index)} />
+            <InputGroupAddon addonType="append">
+              <Button onClick={this.handleRemoveGearGenerator(index)}>x</Button>
+            </InputGroupAddon>
+          </InputGroup>
         ))}
-        <div>
-          <p>Below you can add new gear to set</p>
+        <InputGroup size="sm">
+          <InputGroupAddon addonType="prepend">new gear</InputGroupAddon>
           <Input onChange={this.handleNewGear} />
-        </div>
+        </InputGroup>
       </>
     );
   }

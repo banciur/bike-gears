@@ -74,15 +74,15 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
     return (
       <Row>
         <Col>
-          <h4>Front gears</h4>
           <GearboxComponent
+            header="Front gears"
             gearbox={this.state.chainGearbox.frontGears}
             gearboxChangeHandler={this.frontGearsChangeHandler}
           />
         </Col>
         <Col>
-          <h4>Rear gears</h4>
           <GearboxComponent
+            header="Rear gears"
             gearbox={this.state.chainGearbox.rearGears}
             gearboxChangeHandler={this.rearGearsChangeHandler}
           />
