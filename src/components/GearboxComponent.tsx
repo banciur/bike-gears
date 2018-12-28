@@ -87,7 +87,7 @@ export class GearboxComponent extends React.Component<GearboxComponentProps, Gea
             <InputGroupAddon addonType="prepend">{`${index + 1}`}</InputGroupAddon>
             <Input value={gear} onChange={this.handleChangeGearGenerator(index)} />
             <InputGroupAddon addonType="append">
-              <Button onClick={this.handleRemoveGearGenerator(index)}>x</Button>
+              <Button onClick={this.handleRemoveGearGenerator(index)}>{"\u2717"}</Button>
             </InputGroupAddon>
           </InputGroup>
         ))}
