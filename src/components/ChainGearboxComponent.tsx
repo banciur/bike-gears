@@ -4,7 +4,7 @@ import { Row, Col } from "reactstrap";
 import { ChainGearbox } from "../models/ChainGearbox";
 import { Gearbox } from "../models/Gearbox";
 import { GearboxComponent } from "./GearboxComponent";
-import { ClickableSomething } from "./ClickableSomething";
+import { ListWithActionOnSide } from "./ListWithActionOnSide";
 
 export interface ChainGearboxProps {
   chainGearbox: ChainGearbox;
@@ -88,17 +88,19 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
           />
         </Col>
         <Col>
-          <h4>Forbidden gears</h4>
-          <ClickableSomething
+          <ListWithActionOnSide
+            header="Forbidden gears"
             arrayToDisplay={this.state.chainGearbox.forbiddenGears}
             clickHandlerGenerator={this.forbiddenGearsClickHandlerGenerator}
+            side="right"
           />
         </Col>
         <Col>
-          <h4>Ratios</h4>
-          <ClickableSomething
+          <ListWithActionOnSide
+            header="Ratios"
             arrayToDisplay={this.state.chainGearbox.gears.map(gear => `${gear[0]} - ${gear[2].toFixed(2)}`)}
             clickHandlerGenerator={this.ratiosClickHandlerGenerator}
+            side="left"
           />
         </Col>
       </Row>
