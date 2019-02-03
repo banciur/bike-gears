@@ -6,11 +6,11 @@ import { Gearbox } from "../models/Gearbox";
 import { GearboxComponent } from "./GearboxComponent";
 import { ListWithActionOnSide } from "./ListWithActionOnSide";
 
-export interface ChainGearboxProps {
+interface ChainGearboxProps {
   chainGearbox: ChainGearbox;
 }
 
-export interface ChainGearboxState {
+interface ChainGearboxState {
   chainGearbox: ChainGearbox;
 }
 
