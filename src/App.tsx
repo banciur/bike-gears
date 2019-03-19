@@ -4,7 +4,6 @@ import { ChainGearboxComponent } from "./components/ChainGearboxComponent";
 import { ChainGearbox } from "./models/ChainGearbox";
 import { RiderPreferences } from "./models/RiderPreferences";
 import { RiderPreferencesComponent } from "./components/RiderPreferencesComponent";
-import { Container } from "reactstrap";
 
 const frontGears = [44, 32, 22];
 const rearGears = [11, 13, 15, 17, 19, 20, 22];
@@ -17,8 +16,8 @@ const riderPreferencesChange = (newPrefs: RiderPreferences): void => {
 };
 
 export const App = () => (
-  <Container>
+  <>
     <RiderPreferencesComponent riderPreferences={riderPreferences} onChange={riderPreferencesChange} />
     <ChainGearboxComponent chainGearbox={chainGearbox} />
-  </Container>
+  </>
 );
