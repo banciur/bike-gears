@@ -8,6 +8,7 @@ import { ListWithActionOnSide } from "./ListWithActionOnSide";
 
 interface ChainGearboxProps {
   chainGearbox: ChainGearbox;
+  onChange(chainGearbox: ChainGearbox): void;
 }
 
 interface ChainGearboxState {
@@ -30,6 +31,13 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
         this.state.chainGearbox.forbiddenGears,
       ),
     });
+    this.props.onChange(
+      new ChainGearbox(
+        Array.from(gearbox),
+        Array.from(this.state.chainGearbox.rearGears),
+        this.state.chainGearbox.forbiddenGears,
+      ),
+    );
   };
 
   rearGearsChangeHandler = (gearbox: Gearbox) => {
@@ -40,6 +48,13 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
         this.state.chainGearbox.forbiddenGears,
       ),
     });
+    this.props.onChange(
+      new ChainGearbox(
+        Array.from(this.state.chainGearbox.frontGears),
+        Array.from(gearbox),
+        this.state.chainGearbox.forbiddenGears,
+      ),
+    );
   };
 
   forbiddenGearsClickHandlerGenerator = (index: number) => {
@@ -53,6 +68,13 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
           newForbiddenArray,
         ),
       });
+      this.props.onChange(
+        new ChainGearbox(
+          Array.from(this.state.chainGearbox.frontGears),
+          Array.from(this.state.chainGearbox.rearGears),
+          newForbiddenArray,
+        ),
+      );
     };
   };
 
@@ -67,6 +89,13 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
           newForbiddenArray,
         ),
       });
+      this.props.onChange(
+        new ChainGearbox(
+          Array.from(this.state.chainGearbox.frontGears),
+          Array.from(this.state.chainGearbox.rearGears),
+          newForbiddenArray,
+        ),
+      );
     };
   };
 
