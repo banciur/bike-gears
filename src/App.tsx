@@ -23,10 +23,14 @@ const wheelChange = (newWheel: Wheel): void => {
   console.log(newWheel);
 };
 
+const chainGearboxChange = (chainGearbox: ChainGearbox): void => {
+  console.log(chainGearbox);
+};
+
 export const App = () => (
   <>
     <RiderPreferencesComponent riderPreferences={riderPreferences} onChange={riderPreferencesChange} />
     <WheelComponent wheel={wheel} onChange={wheelChange} />
-    <ChainGearboxComponent chainGearbox={chainGearbox} />
+    <ChainGearboxComponent chainGearbox={chainGearbox} onChange={chainGearboxChange} />
   </>
 );
