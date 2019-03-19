@@ -50,25 +50,13 @@ export class RiderPreferencesComponent extends React.Component<
           <Col>
             <FormGroup>
               <Label for="minCadence">Minimum cadence</Label>
-              <Input
-                type="text"
-                name="state"
-                id="minCadence"
-                value={this.state.minCadence}
-                onChange={this.onMinChange}
-              />
+              <Input type="text" id="minCadence" value={this.state.minCadence} onChange={this.onMinChange} />
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
               <Label for="maxCadence">Maximum cadence</Label>
-              <Input
-                type="text"
-                name="state"
-                id="maxCadence"
-                value={this.state.maxCadence}
-                onChange={this.onMaxChange}
-              />
+              <Input type="text" id="maxCadence" value={this.state.maxCadence} onChange={this.onMaxChange} />
             </FormGroup>
           </Col>
         </Row>
