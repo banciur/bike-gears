@@ -6,31 +6,62 @@ import { RiderPreferences } from "./models/RiderPreferences";
 import { RiderPreferencesComponent } from "./components/RiderPreferencesComponent";
 import { WheelComponent } from "./components/WheelComponent";
 import { Wheel } from "./models/Wheel";
+import { ChartComponent } from "./components/ChartComponent";
 
-const frontGears = [44, 32, 22];
-const rearGears = [11, 13, 15, 17, 19, 20, 22];
-const forbiddenGears = ["2-1", "3-2", "1-7", "1-6", "2-7", "3-1"];
+export interface AppState {
+  chainGearbox: ChainGearbox;
+  riderPreferences: RiderPreferences;
+  wheel: Wheel;
+}
 
-const chainGearbox = new ChainGearbox(frontGears, rearGears, forbiddenGears);
-const riderPreferences = new RiderPreferences(80, 120);
-const wheel = new Wheel(28);
+export class App extends React.Component<{}, AppState> {
+  constructor(props: any) {
+    super(props);
 
-const riderPreferencesChange = (newPrefs: RiderPreferences): void => {
-  console.log(newPrefs);
-};
+    const frontGears = [44, 32, 22];
+    const rearGears = [11, 13, 15, 17, 19, 20, 22];
+    const forbiddenGears = ["2-1", "3-2", "1-7", "1-6", "2-7", "3-1"];
 
-const wheelChange = (newWheel: Wheel): void => {
-  console.log(newWheel);
-};
+    this.state = {
+      chainGearbox: new ChainGearbox(frontGears, rearGears, forbiddenGears),
+      riderPreferences: new RiderPreferences(80, 120),
+      wheel: new Wheel(28),
+    };
+  }
 
-const chainGearboxChange = (chainGearbox: ChainGearbox): void => {
-  console.log(chainGearbox);
-};
+  handlePreferencesChange = (riderPreferences: RiderPreferences): void => {
+    this.setState({
+      ...this.state,
+      riderPreferences,
+    });
+  };
 
-export const App = () => (
-  <>
-    <RiderPreferencesComponent riderPreferences={riderPreferences} onChange={riderPreferencesChange} />
-    <WheelComponent wheel={wheel} onChange={wheelChange} />
-    <ChainGearboxComponent chainGearbox={chainGearbox} onChange={chainGearboxChange} />
-  </>
-);
+  handleWheelChange = (wheel: Wheel): void => {
+    this.setState({
+      ...this.state,
+      wheel,
+    });
+  };
+
+  handleChainGearboxChange = (chainGearbox: ChainGearbox): void => {
+    this.setState({
+      ...this.state,
+      chainGearbox,
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <ChartComponent {...this.state} />
+
+        <RiderPreferencesComponent
+          riderPreferences={this.state.riderPreferences}
+          onChange={this.handlePreferencesChange}
+        />
+        <WheelComponent wheel={this.state.wheel} onChange={this.handleWheelChange} />
+        <ChainGearboxComponent chainGearbox={this.state.chainGearbox} onChange={this.handleChainGearboxChange} />
+      </>
+    );
+  }
+}
