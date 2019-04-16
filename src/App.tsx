@@ -18,9 +18,9 @@ export class App extends React.Component<{}, AppState> {
   constructor(props: any) {
     super(props);
 
-    const frontGears = [44, 32, 22];
-    const rearGears = [11, 13, 15, 17, 19, 20, 22];
-    const forbiddenGears = ["2-1", "3-2", "1-7", "1-6", "2-7", "3-1"];
+    const frontGears = [50, 34];
+    const rearGears = [11, 12, 13, 16, 18, 20, 22, 25, 28, 32];
+    const forbiddenGears = ["1-10", "1-9", "1-8", "2-1", "2-2", "2-3"];
 
     this.state = {
       chainGearbox: new ChainGearbox(frontGears, rearGears, forbiddenGears),
