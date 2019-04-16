@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 import { AppState } from "../App";
 
-const SPEED_MIN = 0;
+// const SPEED_MIN = 0;
 const SPEED_MAX = 70;
 
 // const CADENCE_MIN = 0;
@@ -26,6 +26,11 @@ const CADENCE_MAX = 150;
     },
 
  */
+
+const computeSpeed = (cadence: number, ratio: number, wheelRadius = 311): number => {
+  const millimeterMinute = cadence * ratio * 2 * Math.PI * wheelRadius;
+  return (millimeterMinute * 60) / (10 * 100 * 1000);
+};
 
 const options = {
   scales: {
@@ -100,12 +105,12 @@ export const ChartComponent: React.FunctionComponent<AppState> = ({ chainGearbox
       label: gear[0],
       data: [
         {
-          x: SPEED_MIN,
-          y: SPEED_MIN * gear[2],
+          x: 0,
+          y: 0,
         },
         {
-          x: SPEED_MAX + 10,
-          y: (SPEED_MAX + 10) * gear[2],
+          x: computeSpeed(CADENCE_MAX, gear[2]),
+          y: CADENCE_MAX,
         },
       ],
     });
