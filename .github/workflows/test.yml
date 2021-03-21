@@ -1,0 +1,27 @@
+name: Format, lint and test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      - name: Install packages
+        run: yarn install
+      - name: Check formatting
+        run: yarn format
+      - name: Check lint
+        run: yarn tslint
+      - name: Run tests
+        run: yarn test
