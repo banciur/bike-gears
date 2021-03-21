@@ -1,15 +1,10 @@
-name: Format, lint and test
-
+name: Publish
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
-
-
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
@@ -18,9 +13,10 @@ jobs:
         uses: actions/setup-node@v2
       - name: Install packages
         run: yarn install
-      - name: Check formatting
-        run: yarn format
-      - name: Check lint
-        run: yarn tslint
-      - name: Run tests
-        run: yarn test
+      - name: Install packages
+        run: yarn build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: dist
