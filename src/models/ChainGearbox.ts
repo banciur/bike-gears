@@ -30,7 +30,7 @@ export class ChainGearbox implements IGearbox {
   }
 
   [Symbol.iterator](): Iterator<number> {
-    return this.gears.map(gear => gear[2])[Symbol.iterator]();
+    return this.gears.map((gear) => gear[2])[Symbol.iterator]();
   }
 
   getRatio(index: number): number {
@@ -39,8 +39,8 @@ export class ChainGearbox implements IGearbox {
 
   // TODO: could use some tests here?
   private forbiddenGearsSorter = (gear1: string, gear2: string) => {
-    const gear1Indexes = gear1.split("-").map(index => Number.parseInt(index, 10));
-    const gear2Indexes = gear2.split("-").map(index => Number.parseInt(index, 10));
+    const gear1Indexes = gear1.split("-").map((index) => Number.parseInt(index, 10));
+    const gear2Indexes = gear2.split("-").map((index) => Number.parseInt(index, 10));
 
     const res1 = gear1Indexes[0] - gear2Indexes[0];
     if (res1 !== 0) {

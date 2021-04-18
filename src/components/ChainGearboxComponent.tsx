@@ -98,7 +98,7 @@ export class ChainGearboxComponent extends React.Component<ChainGearboxProps, Ch
         <Col>
           <ListWithActionOnSide
             header="Ratios"
-            arrayToDisplay={this.state.chainGearbox.gears.map(gear => `${gear[0]} - ${gear[2].toFixed(2)}`)}
+            arrayToDisplay={this.state.chainGearbox.gears.map((gear) => `${gear[0]} - ${gear[2].toFixed(2)}`)}
             clickHandlerGenerator={this.ratiosClickHandlerGenerator}
             side="left"
           />

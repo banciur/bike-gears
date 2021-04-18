@@ -1,5 +1,5 @@
 const path = require("path");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -7,12 +7,16 @@ module.exports = {
   entry: "./src/index.tsx",
   devtool: "source-map",
   plugins: [
-    new CleanWebpackPlugin(["dist"], { root: path.resolve(__dirname, "..") }),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ["dist"],
+    }),
     new HtmlWebpackPlugin({
       template: "src/index.template",
       title: "Bike gears",
     }),
-    new CopyWebpackPlugin([{ from: "src/favicon", to: "favicon" }]),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "src/favicon", to: "favicon" }],
+    }),
   ],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -33,12 +37,6 @@ module.exports = {
           },
           {
             loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: false,
-              localIdentName: "[name]__[local]___[hash:base64:5]",
-              camelCase: "dashesOnly",
-            },
           },
         ],
       },
